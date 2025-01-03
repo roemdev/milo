@@ -1,0 +1,13 @@
+{
+  "color": {
+    "green": "#79E096",
+    "red": "#F87171",
+    "yellow": "#FFC868",
+    "base": "NotQuiteBlack"
+  },
+  "emoji": {
+    "check": "<:check:1313237490395648021>",
+    "deny": "<:deny:1313237501359558809>",
+    "warn": "<:warn:1313237521634689107>"
+  }
+}
