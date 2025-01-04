@@ -15,7 +15,7 @@ const client = new Client({
     GatewayIntentBits.GuildMessageReactions,
   ],
 });
-//just a comment
+
 client.commands = new Collection();
 client.prefixCommands = new Collection();
 
