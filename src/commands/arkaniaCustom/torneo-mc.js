@@ -1,7 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionsBitField } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
-const { responseEmbed } = require('../../utils/responseEmbed');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,11 +9,7 @@ module.exports = {
         .setDescription('Envía el embed de inscripción al torneo para todos los miembros.'),
     async execute(interaction) {
         // Confirmar ejecución del comando
-        await responseEmbed(
-            'agree',
-            'El comando para el torneo fue enviado con éxito.',
-            interaction
-        );
+        await interaction.reply({ content: 'El comando para el torneo fue enviado con éxito.', ephemeral: true });
 
         // Embed principal del torneo
         const torneoEmbed = new EmbedBuilder()
@@ -54,11 +49,7 @@ module.exports = {
             if (i.customId === 'inscribirme') {
                 // Verificar si el usuario tiene el rol necesario
                 if (!i.member.roles.cache.has(requiredRoleId)) {
-                    await responseEmbed(
-                        'warn',
-                        'No tienes el rol necesario para inscribirte en el torneo.',
-                        i
-                    );
+                    await i.reply({ content: 'No tienes el rol necesario para inscribirte en el torneo.', ephemeral: true });
                     return;
                 }
 
@@ -103,11 +94,7 @@ module.exports = {
 
                 fs.writeFileSync(filePath, JSON.stringify(inscritos, null, 2));
 
-                await responseEmbed(
-                    'agree',
-                    '¡Tu inscripción al torneo ha sido confirmada! ¡Buena suerte!',
-                    i
-                );
+                await i.followUp({ content: '¡Tu inscripción al torneo ha sido confirmada! ¡Buena suerte!', ephemeral: true });
             }
 
             if (i.customId === 'salir_torneo') {
@@ -116,11 +103,7 @@ module.exports = {
 
                 fs.writeFileSync(filePath, JSON.stringify(inscritos, null, 2));
 
-                await responseEmbed(
-                    'agree',
-                    'Has salido del torneo con éxito.',
-                    i
-                );
+                await i.followUp({ content: 'Has salido del torneo con éxito.', ephemeral: true });
             }
         });
     },
