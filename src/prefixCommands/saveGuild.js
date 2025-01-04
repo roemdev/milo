@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const connection = require('../../db');
+const assets = require('../../assets.json');
 
 module.exports = {
   name: "sg",
@@ -149,7 +150,7 @@ module.exports = {
 
         // Crear el embed para la respuesta
         const embed = new EmbedBuilder()
-          .setColor("#00FF00")
+          .setColor(assets.color.green)
           .setTitle("Información del Servidor Guardada")
           .addFields(
             { name: "Servidor", value: `**Nombre:** ${guild.name}\n**ID:** ${guild.id}\n**Región:** ${guild.preferredLocale}\n**Miembros:** ${guild.memberCount}`, inline: false },
